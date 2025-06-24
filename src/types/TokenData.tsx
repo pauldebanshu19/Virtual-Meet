@@ -3,11 +3,11 @@ export type TokenData = {
     name: string;
     symbol: string;
     decimals: string;
-    logo?: string;
-    logo_hash?: string;
-    thumbnail?: string;
-    block_number?: string | null;
-    validated?: string | null;
+    logo?: string | null;
+    logo_hash?: string | null;
+    thumbnail?: string | null;
+    block_number?: string;
+    validated?: number;
     created_at?: string | null;
     possible_spam?: boolean;
     verified_collection?: boolean;

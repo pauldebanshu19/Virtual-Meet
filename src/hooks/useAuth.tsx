@@ -1,35 +1,40 @@
 import { useAppContext } from "@/contexts/AppContext";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
+import { useEffect } from "react";
 
 export function useAuth() {
     const { address, isConnected } = useAccount();
 
     const { setAddress, setIsConnected } = useAppContext();
-    const { connect } = useConnect({
-        connector: new InjectedConnector(),
-    }); 
-
+    const { connect, connectors } = useConnect();
     const { disconnect } = useDisconnect();
+
+    useEffect(() => {
+        setAddress(address ?? "");
+        setIsConnected(isConnected);
+    }, [address, isConnected, setAddress, setIsConnected]);
+
     const handleConnect = async () => {
         try {
-            if (isConnected) {
-                await handleConnect();
-            }
+            const injectedConnector = connectors.find(
+                (connector) => connector.id === "injected"
+            );
 
-            await connect();
-            setAddress(address || "");
-            setIsConnected(isConnected);
+            if (injectedConnector) {
+                await connect({ connector: injectedConnector });
+            } else if (connectors.length > 0) {
+                await connect({ connector: connectors[0] });
+            } else {
+                console.log("No connectors available.");
+            }
         } catch (error) {
-            console.error("Connection error:", error);    
+            console.error("Connection error:", error);
         }
     };
-    
-    const handleDisconnect = async () => {
+
+    const handleDisconnect = () => {
         try {
-            await disconnect();
-            setAddress(address || "");
-            setIsConnected(isConnected);
+            disconnect();
         } catch (error) {
             console.error("Disconnection error:", error);
         }
@@ -39,6 +44,6 @@ export function useAuth() {
         address,
         isConnected,
         handleConnect,
-        handleDisconnect,       
+        handleDisconnect,
     };
 }    
