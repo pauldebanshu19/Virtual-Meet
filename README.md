@@ -1,22 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Virtual Meet
+
+A Web3 virtual meeting application built with Next.js and wagmi. This project allows users to connect their Ethereum wallets, view token balances, and access exclusive content based on token ownership.
+
+## Features
+
+- **Wallet Connection**: Connect to the application using MetaMask or other browser wallets.
+- **Balance Checker**: View your native ETH balance and ERC-20 token balances.
+- **Fan Tokens**: See metadata for a predefined list of fan tokens.
+- **Virtual Meeting**: A dedicated page for virtual meetings.
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Web3**:
+  - [wagmi](https://wagmi.sh/): React Hooks for Ethereum.
+  - [viem](https://viem.sh/): A TypeScript interface for Ethereum.
+  - [Moralis](https://moralis.io/): Web3 APIs for fetching on-chain data.
+- **State Management**: [TanStack Query](https://tanstack.com/query/latest)
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to get the project up and running on your local machine.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Node.js](https://nodejs.org/en/) (v18 or later)
+- [npm](https://www.npmjs.com/)
+- A browser with a Web3 wallet extension (e.g., [MetaMask](https://metamask.io/))
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone <repository-url>
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd virtual-meet
+    ```
+3.  Install the dependencies:
+    ```bash
+    npm install
+    ```
+4.  Create a `.env.local` file in the root of the project and add your Moralis API key:
+    ```
+    NEXT_PUBLIC_MORALIS_API_KEY=your_moralis_api_key_here
+    ```
+5.  Start the development server:
+    ```bash
+    npm run dev
+    ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
